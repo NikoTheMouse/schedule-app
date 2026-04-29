@@ -1,1 +1,32 @@
+# Planning artifacts (GSD workflow)
 .planning/
+
+# Dependencies
+node_modules/
+
+# Build outputs
+.turbo/
+dist/
+build/
+.next/
+out/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment files — NEVER commit secrets
+.env
+.env.local
+.env*.local
+
+# Logs and editor
+*.log
+npm-debug.log*
+pnpm-debug.log*
+.DS_Store
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
