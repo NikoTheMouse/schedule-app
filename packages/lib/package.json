@@ -1,0 +1,26 @@
+{
+  "name": "@repo/lib",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": {
+      "types": "./index.ts",
+      "default": "./index.ts"
+    }
+  },
+  "scripts": {
+    "lint": "echo 'lint stub — wired in a later phase' && exit 0",
+    "typecheck": "tsc --noEmit",
+    "build": "echo 'no build step — TS source consumed directly via exports field' && exit 0"
+  },
+  "dependencies": {
+    "@repo/db": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.0.0",
+    "typescript": "^6.0.3"
+  }
+}

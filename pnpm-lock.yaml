@@ -37,6 +37,22 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
 
+  packages/lib:
+    dependencies:
+      '@repo/db':
+        specifier: workspace:*
+        version: link:../db
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.17
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+
   packages/typescript-config: {}
 
 packages:
