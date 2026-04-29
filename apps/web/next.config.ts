@@ -6,9 +6,7 @@ const nextConfig: NextConfig = {
   // to parse the .ts files at build time.
   transpilePackages: ["@repo/db", "@repo/lib"],
   reactStrictMode: true,
-  experimental: {
-    typedRoutes: true,
-  },
+  typedRoutes: true,
 };
 
 export default nextConfig;
