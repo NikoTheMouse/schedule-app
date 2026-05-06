@@ -23,8 +23,6 @@ export interface Group {
   join_code: string;
   created_by: string; // user id
   date_range_permission: "creator_only" | "any_member";
-  date_range_start: string | null; // ISO date "YYYY-MM-DD" or null (D-07)
-  date_range_end: string | null; // ISO date "YYYY-MM-DD" or null (D-07)
   created_at: string;
 }
 
@@ -44,7 +42,6 @@ export interface AvailabilityBlock {
   date: string; // "YYYY-MM-DD"
   start_time: string; // "HH:MM:SS"
   end_time: string; // "HH:MM:SS"
-  created_at: string; // ISO timestamp
 }
 
 /**
@@ -61,8 +58,8 @@ export interface Database {
       };
       groups: {
         Row: Group;
-        Insert: Omit<Group, "id" | "join_code" | "created_at">; // join_code has SQL default
-        Update: Partial<Omit<Group, "id" | "created_by" | "created_at">>; // can't change creator
+        Insert: Omit<Group, "id" | "created_at">;
+        Update: Partial<Omit<Group, "id" | "created_at">>;
       };
       group_members: {
         Row: GroupMember;
@@ -71,8 +68,8 @@ export interface Database {
       };
       availability_blocks: {
         Row: AvailabilityBlock;
-        Insert: Omit<AvailabilityBlock, "id" | "created_at">; // id and created_at have SQL defaults
-        Update: Partial<Omit<AvailabilityBlock, "id" | "group_id" | "user_id" | "created_at">>;
+        Insert: Omit<AvailabilityBlock, "id">;
+        Update: Partial<Omit<AvailabilityBlock, "id" | "group_id" | "user_id">>;
       };
     };
     Views: Record<string, never>;
@@ -80,5 +77,3 @@ export interface Database {
     Enums: Record<string, never>;
   };
 }
-
-

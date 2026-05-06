@@ -30,3 +30,14 @@ pnpm-debug.log*
 
 # OS
 Thumbs.db
+
+# Planning artifacts (local only)
+.claude/
+
+# Planning/tracking files (USB only)
+PHASE*.md
+*ROADMAP*.md
+*PLAN*.md
+*SUMMARY*.md
+*PROGRESS*.md
+*STATE*.md

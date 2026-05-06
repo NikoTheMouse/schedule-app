@@ -13,9 +13,10 @@ export type {
   AvailabilityBlock,
   Database,
 } from "./src/types";
-export { getGroup, createGroup, getGroupMembers } from "./src/queries/groups";
+export { getGroup, createGroup, getGroupMembers, getUserGroups, addMember, regenerateJoinCode, updateDateRange } from "./src/queries/groups";
 export {
   getUserAvailability,
   setAvailability,
   getGroupAvailability,
+  calculateOverlap,
 } from "./src/queries/availability";

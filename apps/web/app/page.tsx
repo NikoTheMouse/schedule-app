@@ -1,24 +1,32 @@
-import type { Profile } from "@repo/db";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 
-/**
- * Landing page. Imports a type from @repo/db as a Phase 1 smoke test —
- * if this file typechecks and builds, cross-package type resolution is wired correctly.
- * Phase 2 will replace this with a real landing / redirect to (app)/groups.
- */
-export default function HomePage() {
-  // Reference the Profile type to prove cross-package type resolution works.
-  // Cast through unknown so TypeScript does not narrow to `never` when the
-  // value is null at runtime — the type annotation is the test, not the value.
-  const _profileShape = null as unknown as Profile | null;
+import { createSupabaseServerClient } from "@repo/db";
+import { Button } from "@/components/ui/button";
+
+export default async function HomePage() {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (user) {
+    redirect("/groups");
+  }
 
   return (
-    <main>
-      <h1>MouseTime</h1>
-      <p>
-        Group availability scheduling — when is everyone free? Coming together in
-        Phase 2 (authentication) and Phase 3 (groups + availability).
-      </p>
-      {_profileShape !== null && <span>{_profileShape.email}</span>}
+    <main className="min-h-screen flex flex-col items-center justify-center p-6">
+      <div className="w-full max-w-xs text-center space-y-6">
+        <h1 className="text-3xl font-semibold">MouseTime</h1>
+        <p className="text-muted-foreground">Find when everyone&apos;s free.</p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-3">
+          <Button asChild className="h-11">
+            <Link href="/login">Sign in</Link>
+          </Button>
+          <Button asChild variant="outline" className="h-11">
+            <Link href="/signup">Create account</Link>
+          </Button>
+        </div>
+      </div>
     </main>
   );
 }
